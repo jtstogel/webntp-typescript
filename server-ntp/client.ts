@@ -5,12 +5,13 @@ import {SdcMessageEvent} from "../simple-data-channel/simple-data-channel";
 
 
 
-window.onloadend = () => {
+window.onload = () => {
     // @ts-ignore
     document.getElementById("button").onclick = () => {
         // @ts-ignore
         const hosts = document.getElementById("hosts").innerHTML.trim().split('\n').map(s => s.trim());
-        const ntpClient = new NTPClient(hosts);
+        console.log(hosts);
+	const ntpClient = new NTPClient(hosts);
         const output = document.getElementById("output");
         setInterval(() => {
             // @ts-ignore
