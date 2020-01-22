@@ -2,12 +2,11 @@
   "name": "webntp-typescript",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/server/index.js",
-  "types": "dist/server/index.d.ts",
+  "main": "dist/server-ntp/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "npm run-script build && node dist/server/index.js"
+    "start": "npm run-script build && node dist/server-ntp/index.js"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +18,7 @@
   },
   "dependencies": {
     "@types/ws": "^7.2.0",
+    "eventemitter3": "^4.0.0",
     "express": "^4.17.1",
     "isomorphic-ws": "^4.0.1",
     "wrtc": "^0.4.3",
