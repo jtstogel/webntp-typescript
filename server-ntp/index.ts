@@ -6,18 +6,23 @@ import WebSocket from "isomorphic-ws";
 // @ts-ignore
 import browserify from "browserify-middleware";
 import {join} from "path";
+import https from "https";
+import fs from "fs";
 
 const app = express();
 app.use('/index.html', express.static(join(__dirname, 'static', 'index.html')));
 app.use('/client.js', browserify(join(__dirname, 'client.js')));
 
-const httpPort = process.env.HTTP_PORT || 8080;
-app.listen(httpPort, () => console.log(`Started on port ${httpPort}`));
+const sslPath = <string>process.env.SSL_PATH;
+const httpsServer = https.createServer({
+    key: fs.readFileSync(join(sslPath, 'privkey.pem')),
+    cert: fs.readFileSync(join(sslPath, 'cert.pem'))
+}, app);
 
-
-const wssPort = 8000;
 const wss = new WebSocket.Server({
-    port: wssPort
+    server: httpsServer
 });
 const ntpServer = new NTPServer(wss);
 
+const httpsPort = process.env.PORT || 8080;
+httpsServer.listen(httpsPort, () => console.log(`Started on port ${httpsPort}`));

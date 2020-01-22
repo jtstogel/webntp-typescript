@@ -15,7 +15,7 @@ export class PeerClockConnection extends events.EventEmitter {
     constructor(host: string) {
         super();
         this.host = host;
-        this.ws = new WebSocket(`ws://${this.host}`);
+        this.ws = new WebSocket(`wss://${this.host}`);
         this.sdc = new SimpleDataChannel(this.ws);
         this.sdc.on('message', this.onMessage.bind(this));
     }
