@@ -28,7 +28,7 @@ export class NTPClient {
             const dist = NTPClient.dist(pc);
             norm += 1 / dist;
             offset += p.offset / dist;
-            jitter += (p.delay - sorted[0].getState().delay) ** 2 / dist;
+            jitter += (p.offset - sorted[0].getState().offset) ** 2 / dist;
         }
         offset = offset / norm;
         jitter = Math.sqrt(jitter / norm);
