@@ -36,7 +36,7 @@ export class NTPClient {
         // filter
         this.offset = offset;
         this.jitter = jitter;
-        console.log("Updated Offset", this.offset, "and jitter", this.jitter);
+        console.log("Updated Offset", this.offset, "and jitter", this.jitter, "with max error", sorted[0].getState());
 
         return { offset, jitter }
     }
