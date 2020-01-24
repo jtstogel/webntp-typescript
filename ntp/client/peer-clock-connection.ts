@@ -36,7 +36,7 @@ export class PeerClockConnection extends events.EventEmitter {
         // Compute and emit sample
         const rtt = dst - org;
         this.emit('sample', {
-            offset: (rec - org) / 2 + (dst - xmt) / 2,
+            offset: (rec - org) / 2 + (xmt - dst) / 2,
             delay: rtt - (xmt - rec),
             dispersion: Timing.systemPrecision() + precision + Constants.PHI * rtt,
             timeOfArrival: dst

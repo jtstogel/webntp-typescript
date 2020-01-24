@@ -33,6 +33,7 @@ export class PeerClock extends events.EventEmitter {
     }
 
     private onRawSample(sample: RawSample) {
+        console.log("Sample:", sample);
         const filteredSample = this.clockFilter.accept(sample);
         if (SelectionFilter.isAcceptable(filteredSample)) {
             this.state = filteredSample;
